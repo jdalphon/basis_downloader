@@ -39,7 +39,7 @@ for x in range(0,1439):
     skinresponse = floatify(results['metrics']['gsr']['values'][x])
     skintemp = xstr(results['metrics']['skin_temp']['values'][x])
     airtemp = xstr(results['metrics']['air_temp']['values'][x])
-    file.write('u' + str(time) + '000,' + heartrate + ',' + steps + ',' + skinresponse + ',' + skintemp + ',' + airtemp + ',' + state +'\n')
+    file.write(str(time) + ',' + heartrate + ',' + steps + ',' + skinresponse + ',' + skintemp + ',' + airtemp + ',' + state +'\n')
     time += 60
 
 file.close()
