@@ -1,5 +1,6 @@
 import urllib2
 import simplejson
+import datetime
 
 def xstr(s):
     if s is None:
@@ -10,6 +11,9 @@ def floatify(s):
     if s is None:
         return ''
     return str("%.6f" % float(s))
+
+def time_fmt(s):
+    return datetime.datetime.fromtimestamp(int(s)).strftime('%Y-%m-%d %H:%M:%S')
 
 startdate = 'YYYY-MM-DD'
 user= '[YOUR USER ID HERE]'
@@ -39,7 +43,7 @@ for x in range(0,1439):
     skinresponse = floatify(results['metrics']['gsr']['values'][x])
     skintemp = xstr(results['metrics']['skin_temp']['values'][x])
     airtemp = xstr(results['metrics']['air_temp']['values'][x])
-    file.write(str(time) + ',' + heartrate + ',' + steps + ',' + skinresponse + ',' + skintemp + ',' + airtemp + ',' + state +'\n')
+    file.write(time_fmt(time) + ',' + heartrate + ',' + steps + ',' + skinresponse + ',' + skintemp + ',' + airtemp + ',' + state +'\n')
     time += 60
 
 file.close()
